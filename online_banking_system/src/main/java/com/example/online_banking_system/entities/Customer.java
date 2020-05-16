@@ -3,6 +3,7 @@ package com.example.online_banking_system.entities;
 
 import com.example.online_banking_system.enums.Gender;
 import java.util.Date;
+import java.util.Objects;
 
 public class Customer {
 
@@ -75,5 +76,17 @@ public class Customer {
                 ", DateOfBirth=" + DateOfBirth +
                 ", gender=" + gender +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Customer customer = (Customer) o;
+        return Objects.equals(customerId, customer.customerId);
     }
 }

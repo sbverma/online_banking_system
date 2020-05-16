@@ -4,6 +4,7 @@ package com.example.online_banking_system.entities;
 import com.example.online_banking_system.enums.AccountType;
 import com.example.online_banking_system.pojo.DailyWithdrawalLimit;
 import com.example.online_banking_system.pojo.Money;
+import java.util.Objects;
 
 public abstract class Account {
 
@@ -98,5 +99,17 @@ public abstract class Account {
                 ", accountType=" + accountType +
                 ", dailyWithdrawalLimit=" + dailyWithdrawalLimit +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Account account = (Account) o;
+        return Objects.equals(accountId, account.accountId);
     }
 }

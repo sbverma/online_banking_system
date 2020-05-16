@@ -20,4 +20,8 @@ public class AccountService {
     public Account withdrawalMoney(WithdrawalMoneyRequest withdrawalMoneyRequest) {
         return null;
     }
+
+    public Account getAccountByAccountNumber(Long AccountNumber) {
+        return null;
+    }
 }

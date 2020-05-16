@@ -2,6 +2,7 @@ package com.example.online_banking_system.entities;
 
 
 import com.example.online_banking_system.pojo.BranchAddress;
+import java.util.Objects;
 
 public class Branch {
 
@@ -64,4 +65,17 @@ public class Branch {
                 ", headBranchId=" + headBranchId +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Branch branch = (Branch) o;
+        return Objects.equals(branchId, branch.branchId);
+    }
+
 }
