@@ -18,6 +18,19 @@ public abstract class Account {
     public Account() {
     }
 
+    public Account(Long accountId, Money currentBalance, Double interestRate,
+        Customer customer, Money minimumBalance,
+        AccountType accountType,
+        DailyWithdrawalLimit dailyWithdrawalLimit) {
+        this.accountId = accountId;
+        this.currentBalance = currentBalance;
+        this.interestRate = interestRate;
+        this.customer = customer;
+        this.minimumBalance = minimumBalance;
+        this.accountType = accountType;
+        this.dailyWithdrawalLimit = dailyWithdrawalLimit;
+    }
+
     public Long getAccountId() {
         return accountId;
     }

@@ -1,12 +1,14 @@
 package com.example.online_banking_system.pojo;
 
 import com.example.online_banking_system.enums.Currency;
+import com.example.online_banking_system.exceptions.MoneyCannotBeComparedDueToDifferentCurrencyException;
+import java.util.HashMap;
 
-public class Money {
+public class Money implements Comparable<Money> {
   private Double amount;
   private Currency currency;
 
-  Money(Double amount) {
+  public Money(Double amount) {
     this.amount = amount;
     this.currency = Currency.INR;
   }
@@ -33,5 +35,20 @@ public class Money {
             "amount=" + amount +
             ", currency=" + currency +
             '}';
+  }
+
+  @Override
+  public int compareTo(Money that) {
+    if (this.currency != that.currency) {
+      throw new MoneyCannotBeComparedDueToDifferentCurrencyException(this, that);
+    }
+
+    if (this.getAmount() < that.getAmount()) {
+      return -1;
+    } else if (this.getAmount() == that.getAmount()) {
+      return 0;
+    } else{
+      return 1;
+    }
   }
 }
