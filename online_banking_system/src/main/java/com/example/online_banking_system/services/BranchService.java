@@ -16,4 +16,6 @@ public class BranchService {
     public List<Branch> getAllBranches() {
         return null;
     }
+
+    public Branch getBranchById()
 }

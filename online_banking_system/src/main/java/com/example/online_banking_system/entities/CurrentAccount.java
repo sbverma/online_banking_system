@@ -16,7 +16,7 @@ public class CurrentAccount extends Account {
     super(
         accountId,
         currentBalance,
-        0.0,
+        Constants.INTEREST_RATE_FOR_CURENNT_ACCOUNT,
         customer,
         Constants.MIN_MONEY_FOR_CURRENT_ACCOUNT,
         AccountType.CURRENT_ACCOUNT,

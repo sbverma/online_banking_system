@@ -17,10 +17,10 @@ public class SavingsAccount extends Account {
     super(
         accountId,
         currentBalance,
-        0.0,
+        Constants.INTEREST_RATE_FOR_SAVINGS_ACCOUNT,
         customer,
         Constants.MIN_MONEY_FOR_SAVINGS_ACCOUNT,
-        AccountType.CURRENT_ACCOUNT,
+        AccountType.SAVINGS_ACCOUNT,
         dailyWithdrawalLimit);
 
     if (this.getCurrentBalance().compareTo(this.getMinimumBalance()) < 0) {
