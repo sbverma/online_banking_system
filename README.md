@@ -2,6 +2,7 @@
 
 ### How to run?
 Go to folder and run this<br>
+'mvn clean install'
 'java -jar target/online_banking_system-0.0.1-SNAPSHOT.jar'
 
 ### Curl Requests
