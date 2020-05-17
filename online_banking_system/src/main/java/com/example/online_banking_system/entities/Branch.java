@@ -15,6 +15,13 @@ public class Branch {
     public Branch() {
     }
 
+    public Branch(String ifscCode, String branchName, BranchAddress address, Long headBranchId) {
+        this.ifscCode = ifscCode;
+        this.branchName = branchName;
+        this.address = address;
+        this.headBranchId = headBranchId;
+    }
+
     public Long getBranchId() {
         return branchId;
     }

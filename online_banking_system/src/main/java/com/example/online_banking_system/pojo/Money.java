@@ -8,6 +8,16 @@ public class Money implements Comparable<Money> {
   private Double amount;
   private Currency currency;
 
+  public static Money getSavings() {
+    Money m = new Money(10000d);
+    return m;
+  }
+
+  public static Money getCurrent() {
+    Money m = new Money(20000d);
+    return m;
+  }
+
   public Money(Double amount) {
     this.amount = amount;
     this.currency = Currency.INR;

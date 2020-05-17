@@ -1,20 +1,31 @@
 package com.example.online_banking_system.entities;
 
 
+import com.example.online_banking_system.enums.Gender;
+import com.example.online_banking_system.enums.TransactionStatus;
 import com.example.online_banking_system.enums.TransactionType;
-import com.example.online_banking_system.pojo.TransactionStatus;
+import com.example.online_banking_system.pojo.Money;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Transaction {
 
     private Long transactionId;
-    private Double amount;
+    private Money amount;
     private TransactionType type;
     private TransactionStatus transactionStatus;
     private Account account;
-    private Date createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public Transaction() {
+    }
+
+    public Transaction(Money amount, TransactionType type, TransactionStatus transactionStatus, Account account) {
+        this.amount = amount;
+        this.type = type;
+        this.transactionStatus = transactionStatus;
+        this.account = account;
     }
 
     public Long getTransactionId() {
@@ -25,13 +36,15 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public Double getAmount() {
+    public Money getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(Money amount) {
         this.amount = amount;
     }
+
+
 
     public TransactionType getType() {
         return type;
@@ -41,9 +54,6 @@ public class Transaction {
         this.type = type;
     }
 
-    public TransactionStatus getTransactionStatus() {
-        return transactionStatus;
-    }
 
     public Account getAccount() {
         return account;
@@ -53,16 +63,16 @@ public class Transaction {
         this.account = account;
     }
 
+    public TransactionStatus getTransactionStatus() {
+        return transactionStatus;
+    }
+
     public void setTransactionStatus(TransactionStatus transactionStatus) {
         this.transactionStatus = transactionStatus;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
     }
 
     @Override

@@ -3,6 +3,9 @@ package com.example.online_banking_system.repository;
 import com.example.online_banking_system.entities.Branch;
 import com.example.online_banking_system.entities.Transaction;
 import com.example.online_banking_system.exceptions.ConstraintViolationException;
+
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.springframework.stereotype.Repository;
@@ -28,6 +31,28 @@ public class TransactionRepository {
       }
     }
     transactionsList.add(newTransaction);
+  }
+
+  public List<Transaction> getAllTransactionsOfAccount(Long accountNumber) {
+    CopyOnWriteArrayList<Transaction> txnList = new CopyOnWriteArrayList<>();
+    for (Transaction txn : transactionsList) {
+      if (txn.getAccount().getAccountId().equals(accountNumber)) {
+        txnList.add(txn);
+      }
+    }
+    return txnList;
+  }
+
+  public List<Transaction> getLastTenTransactionsOfAccount(Long accountNumber) {
+    CopyOnWriteArrayList<Transaction> txnList = new CopyOnWriteArrayList<>();
+    for (Transaction txn : transactionsList) {
+      if (txn.getAccount().getAccountId().equals(accountNumber)) {
+        txnList.add(txn);
+      }
+    }
+    //TODO
+    txnList.sort((Comparator<? super Transaction>) txnList);
+    return txnList;
   }
 
 }

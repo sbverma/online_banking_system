@@ -11,10 +11,16 @@ public class Customer {
     private String panNumber;
     private String FirstName;
     private String LastName;
-    private Date DateOfBirth;
     private Gender gender;
 
     public Customer() {
+    }
+
+    public Customer(String panNumber, String firstName, String lastName, Gender gender) {
+        this.panNumber = panNumber;
+        FirstName = firstName;
+        LastName = lastName;
+        this.gender = gender;
     }
 
     public Long getCustomerId() {
@@ -49,14 +55,6 @@ public class Customer {
         LastName = lastName;
     }
 
-    public Date getDateOfBirth() {
-        return DateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        DateOfBirth = dateOfBirth;
-    }
-
     public Gender getGender() {
         return gender;
     }
@@ -66,14 +64,12 @@ public class Customer {
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "Customer{" +
                 "customerId=" + customerId +
                 ", panNumber='" + panNumber + '\'' +
                 ", FirstName='" + FirstName + '\'' +
                 ", LastName='" + LastName + '\'' +
-                ", DateOfBirth=" + DateOfBirth +
                 ", gender=" + gender +
                 '}';
     }

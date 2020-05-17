@@ -4,32 +4,29 @@ package com.example.online_banking_system.entities;
 import com.example.online_banking_system.enums.AccountType;
 import com.example.online_banking_system.pojo.DailyWithdrawalLimit;
 import com.example.online_banking_system.pojo.Money;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public abstract class Account {
 
     private Long accountId;
     private Money currentBalance;
-    private Double interestRate;
     private Customer customer;
-    private Money minimumBalance;
     private AccountType accountType;
-    private DailyWithdrawalLimit dailyWithdrawalLimit;
+    private Branch branch;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public Account() {
     }
 
-    public Account(Long accountId, Money currentBalance, Double interestRate,
-        Customer customer, Money minimumBalance,
-        AccountType accountType,
-        DailyWithdrawalLimit dailyWithdrawalLimit) {
+    public Account(Long accountId, Money currentBalance,
+        Customer customer,
+        AccountType accountType) {
         this.accountId = accountId;
         this.currentBalance = currentBalance;
-        this.interestRate = interestRate;
         this.customer = customer;
-        this.minimumBalance = minimumBalance;
         this.accountType = accountType;
-        this.dailyWithdrawalLimit = dailyWithdrawalLimit;
     }
 
     public Long getAccountId() {
@@ -48,28 +45,12 @@ public abstract class Account {
         this.currentBalance = currentBalance;
     }
 
-    public Double getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(Double interestRate) {
-        this.interestRate = interestRate;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public Money getMinimumBalance() {
-        return minimumBalance;
-    }
-
-    public void setMinimumBalance(Money minimumBalance) {
-        this.minimumBalance = minimumBalance;
     }
 
     public AccountType getAccountType() {
@@ -80,24 +61,25 @@ public abstract class Account {
         this.accountType = accountType;
     }
 
-    public DailyWithdrawalLimit getDailyWithdrawalLimit() {
-        return dailyWithdrawalLimit;
+    public Branch getBranch() {
+        return branch;
     }
 
-    public void setDailyWithdrawalLimit(DailyWithdrawalLimit dailyWithdrawalLimit) {
-        this.dailyWithdrawalLimit = dailyWithdrawalLimit;
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
+
+
+
 
     @Override
     public String toString() {
         return "Account{" +
                 "accountId=" + accountId +
                 ", currentBalance=" + currentBalance +
-                ", interestRate=" + interestRate +
                 ", customer=" + customer +
-                ", minimumBalance=" + minimumBalance +
                 ", accountType=" + accountType +
-                ", dailyWithdrawalLimit=" + dailyWithdrawalLimit +
+                ", branch=" + branch +
                 '}';
     }
 

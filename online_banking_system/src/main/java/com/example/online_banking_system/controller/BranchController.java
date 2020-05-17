@@ -1,11 +1,10 @@
 package com.example.online_banking_system.controller;
 
 import com.example.online_banking_system.entities.Account;
-import com.example.online_banking_system.entities.Branch;
 import com.example.online_banking_system.entities.Customer;
 import com.example.online_banking_system.requests.CreateBranchRequest;
 import com.example.online_banking_system.responses.CreateBranchResponse;
-import com.example.online_banking_system.services.BranchService;
+import com.example.online_banking_system.services.HeadOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,35 +18,23 @@ import java.util.List;
 @RequestMapping("/banking-system")
 public class BranchController {
     @Autowired
-    public BranchService branchService;
-
-    @GetMapping("/get-accounts-from-branch/{branchId}")
-    public List<Account> getAllAccountInBranch(@PathVariable("branchId") Long branchId) {
-        branchService.getAllAccountsInBranch(branchId);
-        return null;
-    }
+    public HeadOfficeService headOfficeService;
 
     @GetMapping("/get-all-branches")
     public List<Account> getAllBranches() {
-        branchService.getAllBranches();
+        headOfficeService.getAllBranches();
         return null;
     }
 
     @GetMapping("/get-branch/{branchId}")
     public List<Account> getBranch(@PathVariable("branchId") Long branchId) {
-        branchService.getBranchById(branchId);
+        headOfficeService.getBranchById(branchId);
         return null;
     }
 
     @PostMapping("/get-branch/{branchId}")
     public CreateBranchResponse createBranch(CreateBranchRequest createBranchRequest) {
-        branchService.createBranch(createBranchRequest);
-        return null;
-    }
-
-    @GetMapping("/get-all-customer-in-branch/{branchId}")
-    public List<Customer> getAllCustomerInBranch(@PathVariable("branchId") Long branchId) {
-        branchService.getAllCustomerInBranch(branchId);
+        headOfficeService.createBranch(createBranchRequest);
         return null;
     }
 

@@ -17,13 +17,15 @@ public class CreateAccountRequest {
     @NonNull
     private String panCardNumber;
     @NonNull
-    private Gender gender;
+    private String gender;
     @NonNull
-    private AccountType accountType;
+    private String accountType;
     @NonNull
-    private Money depositAmount;
+    private Double depositAmount;
     @NonNull
     private String branchId;
+    @NonNull
+    private String currency;
 
     public CreateAccountRequest() {
     }
@@ -64,30 +66,39 @@ public class CreateAccountRequest {
     }
 
     @NonNull
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(@NonNull Gender gender) {
+    public void setGender(@NonNull String gender) {
         this.gender = gender;
     }
 
     @NonNull
-    public AccountType getAccountType() {
+    public String getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(@NonNull AccountType accountType) {
+    public void setAccountType(@NonNull String accountType) {
         this.accountType = accountType;
     }
 
     @NonNull
-    public Money getDepositAmount() {
+    public Double getDepositAmount() {
         return depositAmount;
     }
 
-    public void setDepositAmount(@NonNull Money depositAmount) {
+    public void setDepositAmount(@NonNull Double depositAmount) {
         this.depositAmount = depositAmount;
+    }
+
+    @NonNull
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(@NonNull String currency) {
+        this.currency = currency;
     }
 
     @NonNull

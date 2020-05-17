@@ -7,6 +7,7 @@ public class CreateBranchRequest {
     private String branchName;
     private BranchAddress address;
     private Long headBranchId;
+    private String ifscCode;
 
     public CreateBranchRequest() {
     }
@@ -35,12 +36,21 @@ public class CreateBranchRequest {
         this.headBranchId = headBranchId;
     }
 
+    public String getIfscCode() {
+        return ifscCode;
+    }
+
+    public void setIfscCode(String ifscCode) {
+        this.ifscCode = ifscCode;
+    }
+
     @Override
     public String toString() {
         return "CreateBranchRequest{" +
                 "branchName='" + branchName + '\'' +
                 ", address=" + address +
                 ", headBranchId=" + headBranchId +
+                ", ifscCode='" + ifscCode + '\'' +
                 '}';
     }
 }
