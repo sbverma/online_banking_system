@@ -21,7 +21,7 @@ public class CustomerService {
     public Optional<Customer> getCustomerByPan(String panNumer) {
         Optional<Customer> optionalCustomer = customerRepository.findCustomerByPanNo(panNumer);
         Customer customer;
-        if(optionalCustomer.isEmpty()) {
+        if(!optionalCustomer.isPresent()) {
             return Optional.empty();
 //            throw new CustomerRequiredButNotFoundException();
         }

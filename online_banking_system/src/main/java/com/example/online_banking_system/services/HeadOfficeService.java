@@ -26,7 +26,7 @@ public class HeadOfficeService {
 
     public Branch getBranchById(Long branchId) throws BranchNotFoundException {
         Optional<Branch> optionalBranch = branchRepository.findBranchById(branchId);
-        if(optionalBranch.isEmpty()) {
+        if(!optionalBranch.isPresent()) {
             throw new BranchNotFoundException("Branch " + branchId + " not found in Db");
         }
         return optionalBranch.get();

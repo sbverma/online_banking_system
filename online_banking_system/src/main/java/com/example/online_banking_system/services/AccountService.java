@@ -51,7 +51,7 @@ public class AccountService {
     public Account createAccount(CreateAccountRequest createAccountRequest) throws ConstraintViolationException, BranchNotFoundException, AccountTypeIsNotValidException {
         Optional<Customer> optionalCustomer = customerService.getCustomerByPan(createAccountRequest.getPanCardNumber());
         Customer customer;
-        if(optionalCustomer.isEmpty()) {
+        if(!optionalCustomer.isPresent()) {
             customer = customerService.createCustomer(createAccountRequest);
         } else {
             customer = optionalCustomer.get();
@@ -73,7 +73,7 @@ public class AccountService {
 
     public Account depositMoney(DepositMoneyRequest depositMoneyRequest) throws AccountNotFoundException, ConstraintViolationException, RejectTransactionException {
         Optional<Account> optionalAccount = accountRepository.findAccountById(depositMoneyRequest.getAccountId());
-        if(optionalAccount.isEmpty()) {
+        if(!optionalAccount.isPresent()) {
             throw new AccountNotFoundException("account" + depositMoneyRequest.getAccountId() + " not found");
         }
         Account account = optionalAccount.get();
@@ -98,7 +98,7 @@ public class AccountService {
 
     public Account withdrawalMoney(WithdrawalMoneyRequest withdrawalMoneyRequest) throws AccountNotFoundException, AfterWithdrwalAmountCannotBelLessThenMinimumAmountException, ConstraintViolationException, RejectTransactionException {
         Optional<Account> optionalAccount = accountRepository.findAccountById(withdrawalMoneyRequest.getAccountId());
-        if(optionalAccount.isEmpty()) {
+        if(!optionalAccount.isPresent()) {
             throw new AccountNotFoundException("account" + withdrawalMoneyRequest.getAccountId() + " not found");
         }
         Account account = optionalAccount.get();
@@ -130,7 +130,7 @@ public class AccountService {
 
     public Account getAccountByAccountNumber(Long AccountNumber) throws AccountNotFoundException {
         Optional<Account> optionalAccount = accountRepository.findAccountById(AccountNumber);
-        if(optionalAccount.isEmpty()) {
+        if(!optionalAccount.isPresent()) {
             throw new AccountNotFoundException("account" + AccountNumber + " not found");
         }
         return optionalAccount.get();
