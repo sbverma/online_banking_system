@@ -24,9 +24,9 @@ public class BranchController {
     @Autowired
     public HeadOfficeService headOfficeService;
 
-    @GetMapping("/get-all-branches")
-    public List<Branch> getAllBranches() {
-        return headOfficeService.getAllBranches();
+    @GetMapping("/get-all-branches/{headOfficeId}")
+    public List<Branch> getAllBranches(@PathVariable("headOfficeId") Long headOfficeId) {
+        return headOfficeService.getAllBranches(headOfficeId);
     }
 
     @GetMapping("/get-branch/{branchId}")

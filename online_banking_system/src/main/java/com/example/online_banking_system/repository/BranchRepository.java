@@ -40,7 +40,13 @@ public class BranchRepository {
     return newBranch;
   }
 
-  public List<Branch> getAllBrnches() {
-    return branchList;
+  public List<Branch> getAllBrnches(Long headOfficeId) {
+    List<Branch> allBranchesOfHeadOffice = new ArrayList<>();
+    for(Branch branch : branchList) {
+      if(headOfficeId.equals(branch.getHeadBranchId())) {
+        allBranchesOfHeadOffice.add(branch);
+      }
+    }
+    return allBranchesOfHeadOffice;
   }
 }

@@ -19,8 +19,8 @@ public class HeadOfficeService {
     @Autowired
     private BranchRepository branchRepository;
 
-    public List<Branch> getAllBranches() {
-        List<Branch> branches = branchRepository.getAllBrnches();
+    public List<Branch> getAllBranches(Long headOfficeId) {
+        List<Branch> branches = branchRepository.getAllBrnches(headOfficeId);
         return branches;
     }
 
