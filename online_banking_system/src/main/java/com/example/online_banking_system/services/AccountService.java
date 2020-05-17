@@ -45,7 +45,8 @@ public class AccountService {
         Customer customer;
         if(optionalCustomer.isEmpty()) {
             Gender gender = Gender.getGenderFromString(createAccountRequest.getGender());
-            customer = new Customer(createAccountRequest.getPanCardNumber(), createAccountRequest.getFirstName(), createAccountRequest.getLastName(), gender);
+            Long customerId = 1l;
+            customer = new Customer(customerId,createAccountRequest.getPanCardNumber(), createAccountRequest.getFirstName(), createAccountRequest.getLastName(), gender);
             customerRepository.saveCustomer(customer);
         } else {
             customer = optionalCustomer.get();

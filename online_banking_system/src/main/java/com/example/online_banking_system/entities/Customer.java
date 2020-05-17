@@ -2,6 +2,8 @@ package com.example.online_banking_system.entities;
 
 
 import com.example.online_banking_system.enums.Gender;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,7 +18,8 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String panNumber, String firstName, String lastName, Gender gender) {
+    public Customer(Long customerId, String panNumber, String firstName, String lastName, Gender gender) {
+        this.customerId = customerId;
         this.panNumber = panNumber;
         FirstName = firstName;
         LastName = lastName;
