@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MinimumAmountValidator implements Validator {
-    public boolean validate(Account account, Money withdrawalMoney) {
+    public boolean validate(Account account, Money withdrawalMoney) throws AfterWithdrwalAmountCannotBelLessThenMinimumAmountException {
         if (account.getCurrentBalance().getAmount() - withdrawalMoney.getAmount() < account.getAccountType().getMinimumAmount().getAmount()) {
             throw new AfterWithdrwalAmountCannotBelLessThenMinimumAmountException("Current Amount " + account.getCurrentBalance().getAmount() + " - withdrawal Amount " + withdrawalMoney.getAmount() + " is less then minimum balance " + account.getAccountType().getMinimumAmount().getAmount());
         }

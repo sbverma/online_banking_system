@@ -4,7 +4,7 @@ public class BranchAddress {
     private String state;
     private String pinCode;
     private String landmark;
-    private String address;
+    private String area;
 
     public BranchAddress() {
     }
@@ -33,12 +33,12 @@ public class BranchAddress {
         this.landmark = landmark;
     }
 
-    public String getAddress() {
-        return address;
+    public String getArea() {
+        return area;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setArea(String area) {
+        this.area = area;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class BranchAddress {
                 "state='" + state + '\'' +
                 ", pinCode='" + pinCode + '\'' +
                 ", landmark='" + landmark + '\'' +
-                ", address='" + address + '\'' +
+                ", address='" + area + '\'' +
                 '}';
     }
 }

@@ -12,7 +12,6 @@ public class CreateAccountRequest {
     @NonNull
     private String firstName;
     private String lastName;
-    @NonNull
     private LocalDateTime dateOfBirth;
     @NonNull
     private String panCardNumber;
@@ -23,7 +22,7 @@ public class CreateAccountRequest {
     @NonNull
     private Double depositAmount;
     @NonNull
-    private String branchId;
+    private Long branchId;
     @NonNull
     private String currency;
 
@@ -102,11 +101,11 @@ public class CreateAccountRequest {
     }
 
     @NonNull
-    public String getBranchId() {
+    public Long getBranchId() {
         return branchId;
     }
 
-    public void setBranchId(@NonNull String branchId) {
+    public void setBranchId(@NonNull Long branchId) {
         this.branchId = branchId;
     }
 

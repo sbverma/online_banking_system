@@ -22,7 +22,7 @@ public class TransactionController {
         return transactionService.getAllTransaction(accountNumber);
     }
 
-    @GetMapping("/get-latest-transactions/{accountNumber}")
+    @GetMapping("/get-mini-statement/{accountNumber}")
     public List<Transaction> getLatestTransactionHistory(@PathVariable("accountNumber") Long accountNumber) {
         return transactionService.getLatestAllTransaction(accountNumber);
     }

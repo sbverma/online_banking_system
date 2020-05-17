@@ -4,6 +4,7 @@ import com.example.online_banking_system.entities.Account;
 import com.example.online_banking_system.entities.Transaction;
 import com.example.online_banking_system.enums.TransactionStatus;
 import com.example.online_banking_system.enums.TransactionType;
+import com.example.online_banking_system.exceptions.ConstraintViolationException;
 import com.example.online_banking_system.pojo.Money;
 import com.example.online_banking_system.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class TransactionService {
         return transactions;
     }
 
-    public Transaction createTransaction(Account account, TransactionType transactionType, Money withdrawalAmount, TransactionStatus transactionStatus) {
+    public Transaction createTransaction(Account account, TransactionType transactionType, Money withdrawalAmount, TransactionStatus transactionStatus) throws ConstraintViolationException {
 
         Transaction transaction =  new Transaction(withdrawalAmount, transactionType, transactionStatus, account);
         transaction = transactionRepository.saveTxn(transaction);

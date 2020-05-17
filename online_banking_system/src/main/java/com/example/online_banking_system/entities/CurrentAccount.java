@@ -11,10 +11,16 @@ public class CurrentAccount extends Account {
 
   public CurrentAccount(
       Customer customer,
-      Money currentBalance) {
+      Money currentBalance,
+      Branch branch) {
     super(
         currentBalance,
         customer,
-        AccountType.CURRENT_ACCOUNT);
+        AccountType.CURRENT_ACCOUNT,
+            branch);
+  }
+
+  public CurrentAccount(Account account) {
+    super(account);
   }
 }

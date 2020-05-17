@@ -21,7 +21,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/get-customer/{panNumber}")
-    public Customer getCustomer(@PathVariable("panNumber") String panNumber) {
+    public Customer getCustomer(@PathVariable("panNumber") String panNumber) throws CustomerRequiredButNotFoundException {
         Optional<Customer> customer =  customerService.getCustomerByPan(panNumber);
         if(customer.isEmpty()) {
             throw new CustomerRequiredButNotFoundException();

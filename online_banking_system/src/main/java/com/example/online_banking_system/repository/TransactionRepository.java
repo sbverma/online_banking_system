@@ -57,8 +57,8 @@ public class TransactionRepository {
       }
     }
     //TODO
-    txnList.sort((Comparator<? super Transaction>) txnList);
-    return txnList;
+    int startingIndex = Math.max(txnList.size()-10, 0);
+    return txnList.subList(startingIndex, txnList.size());
   }
 
 }

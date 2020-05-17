@@ -4,6 +4,7 @@ import com.example.online_banking_system.entities.Account;
 import com.example.online_banking_system.entities.Branch;
 import com.example.online_banking_system.entities.Customer;
 import com.example.online_banking_system.exceptions.BranchNotFoundException;
+import com.example.online_banking_system.exceptions.ConstraintViolationException;
 import com.example.online_banking_system.repository.BranchRepository;
 import com.example.online_banking_system.requests.CreateBranchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class HeadOfficeService {
         return branches;
     }
 
-    public Branch getBranchById(Long branchId) {
+    public Branch getBranchById(Long branchId) throws BranchNotFoundException {
         Optional<Branch> optionalBranch = branchRepository.findBranchById(branchId);
         if(optionalBranch.isEmpty()) {
             throw new BranchNotFoundException("Branch " + branchId + " not found in Db");
@@ -31,7 +32,7 @@ public class HeadOfficeService {
         return optionalBranch.get();
     }
 
-    public Branch createBranch(CreateBranchRequest createBranchRequest) {
+    public Branch createBranch(CreateBranchRequest createBranchRequest) throws ConstraintViolationException {
         Branch branch = new Branch(createBranchRequest.getIfscCode(), createBranchRequest.getBranchName(), createBranchRequest.getAddress(), createBranchRequest.getHeadBranchId());
         branch = branchRepository.saveBranch(branch);
         return branch;

@@ -10,11 +10,17 @@ public class SavingsAccount extends Account {
 
   public SavingsAccount(
       Customer customer,
-      Money currentBalance) {
+      Money currentBalance,
+      Branch branch) {
 
     super(
         currentBalance,
         customer,
-        AccountType.SAVINGS_ACCOUNT);
+        AccountType.SAVINGS_ACCOUNT,
+            branch);
+  }
+
+  public SavingsAccount(Account account) {
+    super(account);
   }
 }

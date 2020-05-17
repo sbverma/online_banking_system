@@ -5,7 +5,7 @@ import com.example.online_banking_system.pojo.Money;
 public class WithdrawalMoneyRequest {
 
     private Long accountId;
-    private Money withdrawalAmount;
+    private Double withdrawalAmount;
 
     public WithdrawalMoneyRequest() {
     }
@@ -18,11 +18,11 @@ public class WithdrawalMoneyRequest {
         this.accountId = accountId;
     }
 
-    public Money getWithdrawalAmount() {
+    public Double getWithdrawalAmount() {
         return withdrawalAmount;
     }
 
-    public void setWithdrawalAmount(Money withdrawalAmount) {
+    public void setWithdrawalAmount(Double withdrawalAmount) {
         this.withdrawalAmount = withdrawalAmount;
     }
 

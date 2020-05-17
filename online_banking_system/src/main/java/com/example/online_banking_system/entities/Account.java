@@ -17,15 +17,27 @@ public abstract class Account {
     private Branch branch;
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    public Account(Account account) {
+        this.accountId = account.getAccountId();
+        this.currentBalance = new Money(account.getCurrentBalance().getAmount());
+        this.customer = account.getCustomer();
+        this.accountType = account.getAccountType();
+        this.branch = account.getBranch();
+        this.createdAt = account.getCreatedAt();
+    }
+
     public Account() {
     }
 
+
+
     public Account(Money currentBalance,
         Customer customer,
-        AccountType accountType) {
+        AccountType accountType, Branch branch) {
         this.currentBalance = currentBalance;
         this.customer = customer;
         this.accountType = accountType;
+        this.branch = branch;
     }
 
     public Long getAccountId() {
@@ -68,8 +80,9 @@ public abstract class Account {
         this.branch = branch;
     }
 
-
-
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
     @Override
     public String toString() {

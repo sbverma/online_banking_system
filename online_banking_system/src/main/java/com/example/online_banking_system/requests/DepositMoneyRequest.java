@@ -5,7 +5,7 @@ import com.example.online_banking_system.pojo.Money;
 public class DepositMoneyRequest {
 
     private Long accountId;
-    private Money depositAmount;
+    private Double depositAmount;
 
     public DepositMoneyRequest() {
     }
@@ -18,11 +18,11 @@ public class DepositMoneyRequest {
         this.accountId = accountId;
     }
 
-    public Money getDepositAmount() {
+    public Double getDepositAmount() {
         return depositAmount;
     }
 
-    public void setDepositAmount(Money depositAmount) {
+    public void setDepositAmount(Double depositAmount) {
         this.depositAmount = depositAmount;
     }
 

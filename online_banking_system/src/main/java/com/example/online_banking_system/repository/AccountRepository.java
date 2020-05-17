@@ -29,20 +29,19 @@ public class AccountRepository {
     return Optional.empty();
   }
 
-  public void saveAccount(Account newAccount) throws ConstraintViolationException {
+  public Account saveAccount(Account newAccount) throws ConstraintViolationException {
     for (Account account : accountList) {
       if (account.equals(newAccount)) {
         throw new ConstraintViolationException("Account : " + newAccount + " already exists");
       }
     }
-    newAccount.setAccountId(uniqueAccountId.getAndAdd(1));
+    newAccount.setAccountId(uniqueAccountId.addAndGet(1));
     accountList.add(newAccount);
+    return newAccount;
   }
 
-  public Boolean updateAccount(Account account, Money updatedBalance) {
-    Double currentBalance = account.getCurrentBalance().getAmount();
-    Double depositAmount = updatedBalance.getAmount();
-    account.getCurrentBalance().setAmount(currentBalance + depositAmount);
+  public Boolean updateAccount(Account account, Double updatedBalance) {
+    account.getCurrentBalance().setAmount(updatedBalance);
     return true;
   }
 }
