@@ -31,7 +31,7 @@ public class TransactionService {
     public Transaction createTransaction(Account account, TransactionType transactionType, Money withdrawalAmount) {
 
         Transaction transaction =  new Transaction(withdrawalAmount, transactionType, TransactionStatus.SUCCESS, account);
-        transactionRepository.saveTxn(transaction);
+        transaction = transactionRepository.saveTxn(transaction);
         return transaction;
     }
 }

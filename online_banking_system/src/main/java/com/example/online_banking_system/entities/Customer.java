@@ -18,8 +18,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long customerId, String panNumber, String firstName, String lastName, Gender gender) {
-        this.customerId = customerId;
+    public Customer(String panNumber, String firstName, String lastName, Gender gender) {
         this.panNumber = panNumber;
         FirstName = firstName;
         LastName = lastName;

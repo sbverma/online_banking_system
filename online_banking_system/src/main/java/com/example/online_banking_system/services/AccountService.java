@@ -38,16 +38,13 @@ public class AccountService {
     private TransactionService transactionService;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
     public Account createAccount(CreateAccountRequest createAccountRequest) {
-        Optional<Customer> optionalCustomer = customerRepository.findCustomerByPanNo(createAccountRequest.getPanCardNumber());
+        Optional<Customer> optionalCustomer = customerService.getCustomerByPan(createAccountRequest.getPanCardNumber());
         Customer customer;
         if(optionalCustomer.isEmpty()) {
-            Gender gender = Gender.getGenderFromString(createAccountRequest.getGender());
-            Long customerId = 1l;
-            customer = new Customer(customerId,createAccountRequest.getPanCardNumber(), createAccountRequest.getFirstName(), createAccountRequest.getLastName(), gender);
-            customerRepository.saveCustomer(customer);
+            customer = customerService.createCustomer(createAccountRequest);
         } else {
             customer = optionalCustomer.get();
         }
@@ -75,10 +72,8 @@ public class AccountService {
         Account account = optionalAccount.get();
 
         // update amount and create txn
-        Double currentBalance = account.getCurrentBalance().getAmount();
-        Double depositAmount = depositMoneyRequest.getWithdrawalAmount().getAmount();
-        account.getCurrentBalance().setAmount(currentBalance + depositAmount);
-        transactionService.createTransaction(account, TransactionType.DEPOSIT, depositMoneyRequest.getWithdrawalAmount());
+        transactionService.createTransaction(account, TransactionType.DEPOSIT, depositMoneyRequest.getDepositAmount());
+        account = accountRepository.updateAccount(account, depositMoneyRequest.getDepositAmount());
         return account;
     }
 
@@ -94,10 +89,8 @@ public class AccountService {
         }
 
         // update amount and create txn
-        Double currentBalance = account.getCurrentBalance().getAmount();
-        Double withdrawalAmount = withdrawalMoneyRequest.getWithdrawalAmount().getAmount();
-        account.getCurrentBalance().setAmount(currentBalance - withdrawalAmount);
         transactionService.createTransaction(account, TransactionType.WITHDRAWAL, withdrawalMoneyRequest.getWithdrawalAmount());
+        account = accountRepository.updateAccount(account, withdrawalMoneyRequest.getWithdrawalAmount());
         return account;
     }
 

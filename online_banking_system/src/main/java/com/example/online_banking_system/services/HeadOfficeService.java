@@ -32,9 +32,8 @@ public class HeadOfficeService {
     }
 
     public Branch createBranch(CreateBranchRequest createBranchRequest) {
-        Long branchid = 1l;
         Branch branch = new Branch(createBranchRequest.getIfscCode(), createBranchRequest.getBranchName(), createBranchRequest.getAddress(), createBranchRequest.getHeadBranchId());
-        branchRepository.saveBranch(branch);
+        branch = branchRepository.saveBranch(branch);
         return branch;
     }
 }

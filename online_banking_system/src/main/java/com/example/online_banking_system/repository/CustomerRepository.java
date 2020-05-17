@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicLong;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class CustomerRepository {
 
-  private static CopyOnWriteArrayList<Customer> customerList = new CopyOnWriteArrayList<>();
+  private static AtomicLong uniqueCustomerId = new AtomicLong(0);
+  private static List<Customer> customerList = new ArrayList<>();
 
   public Optional<Customer> findCustomerByPanNo(String panNumber) {
     for (Customer customer : customerList) {
@@ -29,6 +32,7 @@ public class CustomerRepository {
         throw new ConstraintViolationException("Customer : " + newCustomer + " already exists");
       }
     }
+    newCustomer.setCustomerId(uniqueCustomerId.addAndGet(1));
     customerList.add(newCustomer);
   }
 }

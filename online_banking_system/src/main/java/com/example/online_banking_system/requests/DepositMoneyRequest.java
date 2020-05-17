@@ -5,7 +5,7 @@ import com.example.online_banking_system.pojo.Money;
 public class DepositMoneyRequest {
 
     private Long accountId;
-    private Money withdrawalAmount;
+    private Money depositAmount;
 
     public DepositMoneyRequest() {
     }
@@ -18,19 +18,19 @@ public class DepositMoneyRequest {
         this.accountId = accountId;
     }
 
-    public Money getWithdrawalAmount() {
-        return withdrawalAmount;
+    public Money getDepositAmount() {
+        return depositAmount;
     }
 
-    public void setWithdrawalAmount(Money withdrawalAmount) {
-        this.withdrawalAmount = withdrawalAmount;
+    public void setDepositAmount(Money depositAmount) {
+        this.depositAmount = depositAmount;
     }
 
     @Override
     public String toString() {
         return "DepositMoneyRequest{" +
                 "accountId=" + accountId +
-                ", withdrawalAmount=" + withdrawalAmount +
+                ", depositAmount=" + depositAmount +
                 '}';
     }
 }
