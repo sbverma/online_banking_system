@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -18,6 +19,8 @@ public class TransactionRepository {
 
   private static CopyOnWriteArrayList<Transaction> transactionsList = new CopyOnWriteArrayList<>();
   private static AtomicLong uniqueTransactionId = new AtomicLong(0);
+  //TODO
+  private static ConcurrentHashMap<String, Boolean> lockedAccounts = new ConcurrentHashMap<>();
 
   public Optional<Transaction> findTxnById(Long transactionId) {
     for (Transaction txn : transactionsList) {

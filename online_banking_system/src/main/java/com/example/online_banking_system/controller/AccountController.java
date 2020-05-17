@@ -6,6 +6,7 @@ import com.example.online_banking_system.exceptions.AccountTypeIsNotValidExcepti
 import com.example.online_banking_system.exceptions.AfterWithdrwalAmountCannotBelLessThenMinimumAmountException;
 import com.example.online_banking_system.exceptions.BranchNotFoundException;
 import com.example.online_banking_system.exceptions.ConstraintViolationException;
+import com.example.online_banking_system.exceptions.RejectTransactionException;
 import com.example.online_banking_system.requests.CreateAccountRequest;
 import com.example.online_banking_system.requests.DepositMoneyRequest;
 import com.example.online_banking_system.requests.WithdrawalMoneyRequest;
@@ -35,13 +36,13 @@ public class AccountController {
     }
 
     @PostMapping("/deposit-money")
-    public Account depositMoney(@RequestBody DepositMoneyRequest depositMoneyRequest) throws AccountNotFoundException, ConstraintViolationException {
+    public Account depositMoney(@RequestBody DepositMoneyRequest depositMoneyRequest) throws AccountNotFoundException, ConstraintViolationException, RejectTransactionException {
         // authenticate
         return accountService.depositMoney(depositMoneyRequest);
     }
 
     @PostMapping("/withdraw-money")
-    public Account depositMoney(@RequestBody WithdrawalMoneyRequest withdrawalMoneyRequest) throws AccountNotFoundException, AfterWithdrwalAmountCannotBelLessThenMinimumAmountException, ConstraintViolationException {
+    public Account depositMoney(@RequestBody WithdrawalMoneyRequest withdrawalMoneyRequest) throws AccountNotFoundException, AfterWithdrwalAmountCannotBelLessThenMinimumAmountException, ConstraintViolationException, RejectTransactionException {
         // authenticate
         return accountService.withdrawalMoney(withdrawalMoneyRequest);
     }

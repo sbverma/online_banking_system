@@ -14,6 +14,7 @@ import com.example.online_banking_system.exceptions.AccountTypeIsNotValidExcepti
 import com.example.online_banking_system.exceptions.AfterWithdrwalAmountCannotBelLessThenMinimumAmountException;
 import com.example.online_banking_system.exceptions.BranchNotFoundException;
 import com.example.online_banking_system.exceptions.ConstraintViolationException;
+import com.example.online_banking_system.exceptions.RejectTransactionException;
 import com.example.online_banking_system.pojo.Money;
 import com.example.online_banking_system.repository.AccountRepository;
 import com.example.online_banking_system.repository.CustomerRepository;
@@ -70,7 +71,7 @@ public class AccountService {
         return account;
     }
 
-    public Account depositMoney(DepositMoneyRequest depositMoneyRequest) throws AccountNotFoundException, ConstraintViolationException {
+    public Account depositMoney(DepositMoneyRequest depositMoneyRequest) throws AccountNotFoundException, ConstraintViolationException, RejectTransactionException {
         Optional<Account> optionalAccount = accountRepository.findAccountById(depositMoneyRequest.getAccountId());
         if(optionalAccount.isEmpty()) {
             throw new AccountNotFoundException("account" + depositMoneyRequest.getAccountId() + " not found");
@@ -95,7 +96,7 @@ public class AccountService {
         return account;
     }
 
-    public Account withdrawalMoney(WithdrawalMoneyRequest withdrawalMoneyRequest) throws AccountNotFoundException, AfterWithdrwalAmountCannotBelLessThenMinimumAmountException, ConstraintViolationException {
+    public Account withdrawalMoney(WithdrawalMoneyRequest withdrawalMoneyRequest) throws AccountNotFoundException, AfterWithdrwalAmountCannotBelLessThenMinimumAmountException, ConstraintViolationException, RejectTransactionException {
         Optional<Account> optionalAccount = accountRepository.findAccountById(withdrawalMoneyRequest.getAccountId());
         if(optionalAccount.isEmpty()) {
             throw new AccountNotFoundException("account" + withdrawalMoneyRequest.getAccountId() + " not found");

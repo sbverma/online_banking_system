@@ -6,6 +6,7 @@ import com.example.online_banking_system.exceptions.ConstraintViolationException
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -16,6 +17,8 @@ public class BranchRepository {
 
   private static CopyOnWriteArrayList<Branch> branchList = new CopyOnWriteArrayList<>();
   private static AtomicLong uniqueBranchId = new AtomicLong(0);
+  //TODO
+  private static ConcurrentHashMap<String, Boolean> lockedAccounts = new ConcurrentHashMap<>();
 
   public Optional<Branch> findBranchById(Long branchId) {
     for (Branch branch : branchList) {
