@@ -23,30 +23,26 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/create-account")
-    public CreateAccountResponse createAccount(CreateAccountRequest createAccountRequest) {
+    public Account createAccount(CreateAccountRequest createAccountRequest) {
         // authenticate
-        accountService.createAccount(createAccountRequest);
-        return null;
+        return accountService.createAccount(createAccountRequest);
     }
 
     @PostMapping("/deposit-money")
-    public DepositMoneyResponse depositMoney(DepositMoneyRequest depositMoneyRequest) {
+    public Account depositMoney(DepositMoneyRequest depositMoneyRequest) {
         // authenticate
-        accountService.depositMoney(depositMoneyRequest);
-        return null;
+        return accountService.depositMoney(depositMoneyRequest);
     }
 
     @PostMapping("/withdraw-money")
-    public WithdrawalMoneyResponse depositMoney(WithdrawalMoneyRequest withdrawalMoneyRequest) {
+    public Account depositMoney(WithdrawalMoneyRequest withdrawalMoneyRequest) {
         // authenticate
-        accountService.withdrawalMoney(withdrawalMoneyRequest);
-        return null;
+        return accountService.withdrawalMoney(withdrawalMoneyRequest);
     }
 
     @GetMapping("/get-account/{accountNumber}")
     public Account getAccountByAccountNumber(@PathVariable("accountNumber") Long accountNumber) {
         // authenticate
-        accountService.getAccountByAccountNumber(accountNumber);
-        return null;
+        return accountService.getAccountByAccountNumber(accountNumber);
     }
 }

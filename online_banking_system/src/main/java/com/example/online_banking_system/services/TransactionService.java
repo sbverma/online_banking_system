@@ -28,9 +28,9 @@ public class TransactionService {
         return transactions;
     }
 
-    public Transaction createTransaction(Account account, TransactionType transactionType, Money withdrawalAmount) {
+    public Transaction createTransaction(Account account, TransactionType transactionType, Money withdrawalAmount, TransactionStatus transactionStatus) {
 
-        Transaction transaction =  new Transaction(withdrawalAmount, transactionType, TransactionStatus.SUCCESS, account);
+        Transaction transaction =  new Transaction(withdrawalAmount, transactionType, transactionStatus, account);
         transaction = transactionRepository.saveTxn(transaction);
         return transaction;
     }

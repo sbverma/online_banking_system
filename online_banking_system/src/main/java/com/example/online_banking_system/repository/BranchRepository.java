@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BranchRepository {
 
-  private static List<Branch> branchList = new ArrayList<>();
+  private static CopyOnWriteArrayList<Branch> branchList = new CopyOnWriteArrayList<>();
   private static AtomicLong uniqueBranchId = new AtomicLong(0);
 
   public Optional<Branch> findBranchById(Long branchId) {

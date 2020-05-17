@@ -19,13 +19,11 @@ public class TransactionController {
 
     @GetMapping("/get-all-transactions/{accountNumber}")
     public List<Transaction> getTransactionHistory(@PathVariable("accountNumber") Long accountNumber) {
-        transactionService.getAllTransaction(accountNumber);
-        return null;
+        return transactionService.getAllTransaction(accountNumber);
     }
 
     @GetMapping("/get-latest-transactions/{accountNumber}")
     public List<Transaction> getLatestTransactionHistory(@PathVariable("accountNumber") Long accountNumber) {
-        transactionService.getLatestAllTransaction(accountNumber);
-        return null;
+        return transactionService.getLatestAllTransaction(accountNumber);
     }
 }

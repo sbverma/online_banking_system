@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TransactionRepository {
 
-  private static List<Transaction> transactionsList = new ArrayList<>();
+  private static CopyOnWriteArrayList<Transaction> transactionsList = new CopyOnWriteArrayList<>();
   private static AtomicLong uniqueTransactionId = new AtomicLong(0);
 
   public Optional<Transaction> findTxnById(Long transactionId) {

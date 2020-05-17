@@ -17,16 +17,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AccountRepository {
 
-  private static List<Account> accountList = new ArrayList<>();
+  private static CopyOnWriteArrayList<Account> accountList = new CopyOnWriteArrayList<>();
   private static AtomicLong uniqueAccountId = new AtomicLong(0);
-  private static Map<String, Boolean> lockedItems = new ConcurrentHashMap<String, Boolean>();
 
   public Optional<Account> findAccountById(Long accountId) {
-    while(true) {
-      if(!lockedItems.containsKey(accountId.toString())) {
-        break;
-      }
-    }
     for (Account account : accountList) {
       if (account.getAccountId().equals(accountId)) {
         return Optional.of(account);
@@ -45,17 +39,10 @@ public class AccountRepository {
     accountList.add(newAccount);
   }
 
-  public Account updateAccount(Account account, Money updatedbalance) {
-    while(true) {
-      if(!lockedItems.containsKey(account.getAccountId().toString())) {
-        break;
-      }
-    }
-    lockedItems.put(account.getAccountId().toString(), true);
+  public Boolean updateAccount(Account account, Money updatedBalance) {
     Double currentBalance = account.getCurrentBalance().getAmount();
-    Double depositAmount = updatedbalance.getAmount();
+    Double depositAmount = updatedBalance.getAmount();
     account.getCurrentBalance().setAmount(currentBalance + depositAmount);
-    lockedItems.remove(account.getAccountId().toString());
-    return account;
+    return true;
   }
 }

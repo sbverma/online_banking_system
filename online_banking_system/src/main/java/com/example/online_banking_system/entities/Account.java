@@ -20,10 +20,9 @@ public abstract class Account {
     public Account() {
     }
 
-    public Account(Long accountId, Money currentBalance,
+    public Account(Money currentBalance,
         Customer customer,
         AccountType accountType) {
-        this.accountId = accountId;
         this.currentBalance = currentBalance;
         this.customer = customer;
         this.accountType = accountType;

@@ -6,14 +6,13 @@ import com.example.online_banking_system.exceptions.CurrentBalanceShouldBeAtleas
 import com.example.online_banking_system.pojo.DailyWithdrawalLimit;
 import com.example.online_banking_system.pojo.Money;
 
+
 public class CurrentAccount extends Account {
 
   public CurrentAccount(
-      Long accountId,
       Customer customer,
       Money currentBalance) {
     super(
-        accountId,
         currentBalance,
         customer,
         AccountType.CURRENT_ACCOUNT);

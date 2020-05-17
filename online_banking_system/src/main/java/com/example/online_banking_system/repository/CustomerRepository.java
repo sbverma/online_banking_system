@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class CustomerRepository {
 
   private static AtomicLong uniqueCustomerId = new AtomicLong(0);
-  private static List<Customer> customerList = new ArrayList<>();
+  private static CopyOnWriteArrayList<Customer> customerList = new CopyOnWriteArrayList<>();
 
   public Optional<Customer> findCustomerByPanNo(String panNumber) {
     for (Customer customer : customerList) {

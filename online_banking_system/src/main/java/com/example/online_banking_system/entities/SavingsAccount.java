@@ -9,12 +9,10 @@ import com.example.online_banking_system.pojo.Money;
 public class SavingsAccount extends Account {
 
   public SavingsAccount(
-      Long accountId,
       Customer customer,
       Money currentBalance) {
 
     super(
-        accountId,
         currentBalance,
         customer,
         AccountType.SAVINGS_ACCOUNT);

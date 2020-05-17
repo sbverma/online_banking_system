@@ -1,6 +1,7 @@
 package com.example.online_banking_system.controller;
 
 import com.example.online_banking_system.entities.Account;
+import com.example.online_banking_system.entities.Branch;
 import com.example.online_banking_system.entities.Customer;
 import com.example.online_banking_system.requests.CreateBranchRequest;
 import com.example.online_banking_system.responses.CreateBranchResponse;
@@ -21,21 +22,19 @@ public class BranchController {
     public HeadOfficeService headOfficeService;
 
     @GetMapping("/get-all-branches")
-    public List<Account> getAllBranches() {
-        headOfficeService.getAllBranches();
-        return null;
+    public List<Branch> getAllBranches() {
+        return headOfficeService.getAllBranches();
     }
 
     @GetMapping("/get-branch/{branchId}")
-    public List<Account> getBranch(@PathVariable("branchId") Long branchId) {
-        headOfficeService.getBranchById(branchId);
-        return null;
+    public Branch getBranch(@PathVariable("branchId") Long branchId) {
+        return headOfficeService.getBranchById(branchId);
     }
 
     @PostMapping("/get-branch/{branchId}")
-    public CreateBranchResponse createBranch(CreateBranchRequest createBranchRequest) {
-        headOfficeService.createBranch(createBranchRequest);
-        return null;
+    public Branch createBranch(CreateBranchRequest createBranchRequest) {
+        Branch branch = headOfficeService.createBranch(createBranchRequest);
+        return branch;
     }
 
 }

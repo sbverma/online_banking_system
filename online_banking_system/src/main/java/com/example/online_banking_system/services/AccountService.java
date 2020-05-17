@@ -7,9 +7,11 @@ import com.example.online_banking_system.entities.SavingsAccount;
 import com.example.online_banking_system.entities.Transaction;
 import com.example.online_banking_system.enums.AccountType;
 import com.example.online_banking_system.enums.Gender;
+import com.example.online_banking_system.enums.TransactionStatus;
 import com.example.online_banking_system.enums.TransactionType;
 import com.example.online_banking_system.exceptions.AccountNotFoundException;
 import com.example.online_banking_system.exceptions.AccountTypeIsNotValidException;
+import com.example.online_banking_system.exceptions.ConstraintViolationException;
 import com.example.online_banking_system.pojo.Money;
 import com.example.online_banking_system.repository.AccountRepository;
 import com.example.online_banking_system.repository.CustomerRepository;
@@ -50,13 +52,12 @@ public class AccountService {
         }
         Account account;
         AccountType accountType = AccountType.getAccountTypeFromString(createAccountRequest.getAccountType());
-        //TODO
-        Long accountId =  1l;
+
         Money depositMoney = new Money(createAccountRequest.getDepositAmount());
         if(AccountType.CURRENT_ACCOUNT.equals(accountType)) {
-            account  = new CurrentAccount(accountId, customer, depositMoney);
+            account  = new CurrentAccount(customer, depositMoney);
         } else if(AccountType.SAVINGS_ACCOUNT.equals(accountType)) {
-            account  = new SavingsAccount(accountId, customer, depositMoney);
+            account  = new SavingsAccount(customer, depositMoney);
         } else {
             throw new AccountTypeIsNotValidException("Account Type " + createAccountRequest.getAccountType() + " is not valid" );
         }
@@ -72,8 +73,12 @@ public class AccountService {
         Account account = optionalAccount.get();
 
         // update amount and create txn
-        transactionService.createTransaction(account, TransactionType.DEPOSIT, depositMoneyRequest.getDepositAmount());
-        account = accountRepository.updateAccount(account, depositMoneyRequest.getDepositAmount());
+        boolean isSuccessfullyUpdated = accountRepository.updateAccount(account, depositMoneyRequest.getDepositAmount());
+        if(isSuccessfullyUpdated) {
+            transactionService.createTransaction(account, TransactionType.WITHDRAWAL, depositMoneyRequest.getDepositAmount(), TransactionStatus.SUCCESS);
+        } else {
+            transactionService.createTransaction(account, TransactionType.WITHDRAWAL, depositMoneyRequest.getDepositAmount(), TransactionStatus.FAILED);
+        }
         return account;
     }
 
@@ -89,8 +94,13 @@ public class AccountService {
         }
 
         // update amount and create txn
-        transactionService.createTransaction(account, TransactionType.WITHDRAWAL, withdrawalMoneyRequest.getWithdrawalAmount());
-        account = accountRepository.updateAccount(account, withdrawalMoneyRequest.getWithdrawalAmount());
+
+        boolean isSuccessfullyUpdated = accountRepository.updateAccount(account, withdrawalMoneyRequest.getWithdrawalAmount());
+        if(isSuccessfullyUpdated) {
+            transactionService.createTransaction(account, TransactionType.WITHDRAWAL, withdrawalMoneyRequest.getWithdrawalAmount(), TransactionStatus.SUCCESS);
+        } else {
+            transactionService.createTransaction(account, TransactionType.WITHDRAWAL, withdrawalMoneyRequest.getWithdrawalAmount(), TransactionStatus.FAILED);
+        }
         return account;
     }
 
